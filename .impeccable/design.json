@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-11T00:00:00.000Z",
+  "title": "Design System: Kashk POS Pro — Download Landing",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#f6f2e7", "tonalRamp": ["#4c463c", "#6f6853", "#948c71", "#b8ae8e", "#d5ccb1", "#e7e0cf", "#efeadd", "#f6f2e7"] },
+      "paper-2": { "role": "neutral", "displayName": "Old Paper", "canonical": "#efeadd", "tonalRamp": ["#4c463c", "#6f6853", "#948c71", "#b8ae8e", "#d5ccb1", "#e7e0cf", "#efeadd", "#f6f2e7"] },
+      "ink": { "role": "neutral", "displayName": "Warm Ink", "canonical": "#1c1a16", "tonalRamp": ["#0d0c09", "#120f0b", "#171310", "#1c1a16", "#2a2620", "#3a352c", "#4c463c", "#7a7466"] },
+      "ink-2": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#4c463c", "tonalRamp": ["#0d0c09", "#171310", "#1c1a16", "#2a2620", "#3a352c", "#4c463c", "#7a7466", "#b3ad9e"] },
+      "red": { "role": "primary", "displayName": "Red Stamp", "canonical": "#c22a22", "tonalRamp": ["#3a0c0a", "#5c1210", "#7d1914", "#9e1f18", "#c22a22", "#d5564e", "#e48c85", "#f3c8c4"] },
+      "red-deep": { "role": "primary", "displayName": "Red Stamp Deep", "canonical": "#9e1f18", "tonalRamp": ["#3a0c0a", "#5c1210", "#7d1914", "#9e1f18", "#c22a22", "#d5564e", "#e48c85", "#f3c8c4"] },
+      "glow": { "role": "primary", "displayName": "Focus Amber", "canonical": "#f2c14e", "tonalRamp": ["#4a3a08", "#6e5710", "#a07d18", "#cba01f", "#f2c14e", "#f7d684", "#fbe7b4", "#fdf3d9"] },
+      "backdrop": { "role": "neutral", "displayName": "Storefront Backdrop", "canonical": "#171310", "tonalRamp": ["#0a0806", "#0e0b08", "#120e0b", "#171310", "#1d1813", "#221b14", "#2a2118", "#33291d"] },
+      "backdrop-2": { "role": "neutral", "displayName": "Storefront Backdrop Deep", "canonical": "#221b14", "tonalRamp": ["#0a0806", "#120e0b", "#171310", "#1d1813", "#221b14", "#2a2118", "#33291d", "#3d3122"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The app name at the top of the tape; the PRO mark inside turns red." },
+      "title": { "displayName": "Title", "purpose": "Line-item labels (أندرويد / آيفون) and their prices." },
+      "body": { "displayName": "Body", "purpose": "Feature rows and item descriptions." },
+      "label": { "displayName": "Label", "purpose": "Ticket meta, version, file size, barcode caption — the machine voice." },
+      "grand-total": { "displayName": "Grand Total", "purpose": "The single most important number on the tape, rendered like a cash register." }
+    },
+    "shadows": [
+      { "name": "tape-drop", "value": "0 24px 60px -18px rgba(0,0,0,.7), 0 6px 22px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.5)", "purpose": "The paper's mass floating in the dark shop." },
+      { "name": "torn-edge-cast", "value": "filter: drop-shadow(0 3px 3px rgba(0,0,0,.25))", "purpose": "The bottom tear physically lifting off the roll." },
+      { "name": "button-press", "value": "0 2px 0 #9e1f18 (button's deep color)", "purpose": "The tactile 'pressable key' of the register." }
+    ],
+    "motion": [
+      { "name": "print-reveal", "value": "opacity .5s ease-out, transform .5s ease-out", "purpose": "Blocks snap in one line at a time, like a receipt printing." },
+      { "name": "stamp-underline", "value": "transform .8s cubic-bezier(.2,.7,.2,1) .1s", "purpose": "The red underline prints across section titles on scroll." },
+      { "name": "key-press", "value": "transform .15s ease, box-shadow .15s ease, background .15s ease", "purpose": "Register-key press: 1px lift on hover, 1px press on active." },
+      { "name": "reduced-motion-kill", "value": ".pp { opacity:1; transform:none; transition:none } * { animation:none !important }", "purpose": "prefers-reduced-motion: the receipt prints instantly, state still shown." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "420px", "purpose": "Action buttons inside each line item stack to full width; tape padding narrows to 18px." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Red Stamp Button",
+      "kind": "button",
+      "refersTo": "button-red",
+      "description": "The only download/action moment — the red ink stamp of the register.",
+      "html": "<a class=\"ds-btn-red\" href=\"#\">تحميل APK  ←</a>",
+      "css": ".ds-btn-red { display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:'Cairo',sans-serif; font-weight:800; font-size:15px; padding:12px 18px; border-radius:3px; border:0; cursor:pointer; text-decoration:none; letter-spacing:.2px; line-height:1; background:#c22a22; color:#fff7ee; box-shadow:0 2px 0 #9e1f18; transition:transform .15s ease, box-shadow .15s ease, background .15s ease; } .ds-btn-red:hover { background:#9e1f18; transform:translateY(-1px); } .ds-btn-red:active { transform:translateY(1px); } .ds-btn-red:focus-visible { outline:3px solid #f2c14e; outline-offset:2px; }"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Quiet secondary action — reads the guide.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\">دليل الاستخدام</a>",
+      "css": ".ds-btn-ink { display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:'Cairo',sans-serif; font-weight:800; font-size:15px; padding:12px 18px; border-radius:3px; border:0; cursor:pointer; text-decoration:none; letter-spacing:.2px; line-height:1; background:#1c1a16; color:#f6f2e7; transition:transform .15s ease, background .15s ease; } .ds-btn-ink:hover { background:#000; transform:translateY(-1px); } .ds-btn-ink:active { transform:translateY(1px); } .ds-btn-ink:focus-visible { outline:3px solid #f2c14e; outline-offset:2px; }"
+    },
+    {
+      "name": "Line Item Card",
+      "kind": "card",
+      "refersTo": "item-card",
+      "description": "A cut-ticket with the perforation punch; the only tonal layering allowed.",
+      "html": "<div class=\"ds-item\"><div class=\"ds-item-head\"><span class=\"ds-dot\"></span><span class=\"ds-os\">أندرويد</span><span class=\"ds-price\">مجاناً</span></div><p class=\"ds-desc\">نص الوصف…</p></div>",
+      "css": ".ds-item { position:relative; background:#efeadd; border:2px dashed rgba(28,26,22,.35); border-radius:4px; padding:16px 18px 18px; } .ds-item::before { content:''; position:absolute; top:-8px; right:22px; width:12px; height:12px; border-radius:50%; background:#f6f2e7; } .ds-item-head { display:flex; align-items:center; justify-content:space-between; gap:8px; } .ds-dot { width:11px; height:11px; border-radius:50%; background:#1c1a16; flex:none; } .ds-os { font-weight:900; font-size:19px; } .ds-price { font-weight:900; font-size:19px; color:#c22a22; } .ds-desc { font-size:13.5px; color:#4c463c; font-weight:600; line-height:1.75; margin-top:8px; }"
+    },
+    {
+      "name": "Pill Link Chip",
+      "kind": "chip",
+      "refersTo": "link-chip",
+      "description": "Footer pills that invert to ink on hover — the only fully-rounded object.",
+      "html": "<a class=\"ds-chip\" href=\"#\">سياسة الخصوصية</a>",
+      "css": ".ds-chip { display:inline-flex; align-items:center; gap:6px; font-family:'Cairo',sans-serif; font-size:12.5px; font-weight:800; border:1.5px solid rgba(28,26,22,.45); border-radius:99px; padding:7px 13px; text-decoration:none; color:#1c1a16; transition:background .15s ease, color .15s ease; } .ds-chip:hover { background:#1c1a16; color:#f6f2e7; } .ds-chip:focus-visible { outline:3px solid #f2c14e; outline-offset:2px; }"
+    },
+    {
+      "name": "Section Title",
+      "kind": "custom",
+      "refersTo": "sec-title",
+      "description": "Bold title, dashed rule, and a red underline that prints across on scroll.",
+      "html": "<div class=\"ds-sect\"><span class=\"ds-hd\">المميزات</span></div>",
+      "css": ".ds-sect { display:flex; align-items:center; gap:10px; font-family:'Cairo',sans-serif; font-weight:900; font-size:16px; color:#1c1a16; margin-bottom:8px; } .ds-sect::after { content:''; flex:1; border-top:2px dashed rgba(28,26,22,.4); margin-top:4px; } .ds-hd { display:inline-block; position:relative; } .ds-hd::after { content:''; display:block; height:2px; width:100%; background:#c22a22; margin-top:2px; transform:scaleX(0); transform-origin:right center; transition:transform .8s cubic-bezier(.2,.7,.2,1) .1s; } .ds-sect.in .ds-hd::after { transform:scaleX(1); }"
+    },
+    {
+      "name": "Grand Total Box",
+      "kind": "custom",
+      "refersTo": "grand-total",
+      "description": "The climax of the receipt — the register prints the price of the download.",
+      "html": "<div class=\"ds-grand\"><div class=\"ds-big\">0 د.ج</div><div class=\"ds-lbl\">سعر البرنامج</div></div>",
+      "css": ".ds-grand { text-align:center; padding:14px; border:2px dashed rgba(28,26,22,.4); border-radius:4px; } .ds-big { font-family:'IBM Plex Mono',Consolas,monospace; font-size:40px; font-weight:700; color:#c22a22; line-height:1; } .ds-lbl { font-family:'Cairo',sans-serif; font-size:13px; font-weight:800; color:#1c1a16; margin-top:6px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Morning Receipt",
+    "overview": "The page is a single thermal-receipt printout from a small-shop kiosk: warm cream paper that glows against a dark storefront backdrop, cut with perforation teeth, and torn from the roll at the bottom. Every element is a real receipt object — a header stamp, two 'line items', a features block that reads like a price list, a grand total in cash-register mono, a barcode, and a 'thank you' closer. Nothing breaks the illusion of paper: even focus states behave like a fresh ink stamp. Personality is honest, retro, and warm — one small merchant speaking to another. The paper is the only light source.",
+    "keyCharacteristics": [
+      "A single paper tape on a dark ambient backdrop; the paper is the only light source.",
+      "Perforation, dashes, dots, and torn edges as the only 'borders'.",
+      "Red ink as the only accent, used sparingly for price, marks, and stamp moments.",
+      "Cairo for everything human; IBM Plex Mono for machine/cash-register moments.",
+      "Print-on-scroll: blocks snap in one line at a time, like a receipt being printed."
+    ],
+    "rules": [
+      { "name": "The Single Ink Rule", "body": "Red appears on ≤5% of any screen. The fewer red moments, the more each one means.", "section": "colors" },
+      { "name": "The Paper Boundary Rule", "body": "The tape never shares its surface with the backdrop — either you're on paper or you're in the dark storefront.", "section": "colors" },
+      { "name": "The Machine Voice Rule", "body": "IBM Plex Mono is reserved for register numbers and ticket meta. Never set human prose in mono.", "section": "typography" },
+      { "name": "The Paper Is Flat Rule", "body": "Surfaces never stack with soft shadows. Shadow only ever reads as the paper's own thickness — under the tape and under the tear.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every surface either paper (#f6f2e7 family) or dark backdrop (#171310 family) — never mix, never invent a third theme.",
+      "Do use red only to mark moments: prices, checks, the PRO stamp, the grand total.",
+      "Do print with dotted leaders and dashed rules instead of box borders when a separator is needed.",
+      "Do let IBM Plex Mono carry every number that smells like a register: version, size, total, barcode caption.",
+      "Do keep the receipt grammar — header, items, totals, thank-you — intact in any future section you add."
+    ],
+    "donts": [
+      "Don't add soft card shadows, gradients inside the tape, or elevation stacking — the paper is flat; only its physical edges cast.",
+      "Don't set human prose in IBM Plex Mono, or the machine voice is lost.",
+      "Don't enlarge radii into rounded-modern territory; a 3–6px whisper keeps the cut-paper fiction.",
+      "Don't place red on more than a couple of interactive moments per viewport.",
+      "Don't break RTL mirroring: leaders, perforation, and the print direction all originate from the right."
+    ]
+  }
+}
