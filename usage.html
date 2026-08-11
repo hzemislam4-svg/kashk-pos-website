@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دليل الاستخدام — كشك POS Pro</title>
+<meta name="description" content="دليل استخدام تطبيق كشك POS Pro">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='8' width='52' height='48' rx='4' fill='%23f6f2e7'/%3E%3Crect x='6' y='8' width='52' height='10' rx='4' fill='%23c22a22'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f2e7;--ink:#1c1a16;--ink-2:#4c463c;--red:#c22a22;--bg:#171310;--bg-2:#221b14}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',Tahoma,'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;background:radial-gradient(1000px 500px at 80% -10%,rgba(242,193,78,.14),transparent 60%),linear-gradient(160deg,var(--bg),var(--bg-2) 60%,#120e0b);color:var(--ink);-webkit-font-smoothing:antialiased}
+.tape{position:relative;width:min(560px,100%);background:linear-gradient(var(--paper),var(--paper));border-radius:6px 6px 0 0;box-shadow:0 24px 60px -18px rgba(0,0,0,.7)}
+.pad{padding:26px 28px 20px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--ink-2);text-decoration:none;border:1.5px dashed rgba(28,26,22,.45);border-radius:99px;padding:7px 14px;transition:background .15s ease,color .15s ease}
+.back:hover{background:var(--ink);color:var(--paper)}
+.back:focus-visible{outline:3px solid #f2c14e;outline-offset:2px}
+h1{font-size:26px;font-weight:900;margin-top:14px}
+h1 .pro{color:var(--red)}
+.sub{font-size:12.5px;color:var(--ink-2);font-weight:700;margin-top:6px}
+.rule{height:14px;position:relative;overflow:hidden}
+.rule::after{content:'';position:absolute;left:0;right:0;top:50%;border-top:2px dashed rgba(28,26,22,.35)}
+h2{font-size:15px;font-weight:900;margin:20px 0 6px;display:flex;align-items:center;gap:8px}
+h2::after{content:'';flex:1;border-top:2px dashed rgba(28,26,22,.4);margin-top:4px}
+h2 .n{color:var(--red)}
+p,li{font-size:14.5px;font-weight:600;line-height:1.9;color:var(--ink-2)}
+p b,li b{color:var(--ink)}
+ul{padding-right:20px}
+.note{font-size:13px;background:rgba(28,26,22,.05);border-radius:4px;padding:10px 12px;line-height:1.8;margin-top:10px}
+.footer{text-align:center;padding:6px 26px 0}
+.thanks{font-weight:900;font-size:14px;margin:16px 0;letter-spacing:.5px}
+.thanks em{color:var(--red);font-style:normal}
+.torn{height:14px;background:var(--paper);clip-path:polygon(0 0,3% 60%,7% 15%,12% 75%,18% 30%,25% 80%,31% 20%,38% 70%,45% 10%,52% 65%,58% 25%,64% 85%,70% 35%,76% 70%,83% 15%,90% 60%,96% 30%,100% 55%,100% 100%,0 100%);filter:drop-shadow(0 3px 3px rgba(0,0,0,.25))}
+</style>
+</head>
+<body>
+<div class="tape">
+  <div class="pad">
+    <a class="back" href="index.html">→ العودة لصفحة التحميل</a>
+    <h1>دليل الاستخدام — كشك <span class="pro">POS Pro</span></h1>
+    <div class="sub">من أول تشغيل إلى آخر بيعة في اليوم</div>
+  </div>
+  <div class="rule"></div>
+  <div class="pad">
+    <h2><span class="n">1.</span> أول تشغيل</h2>
+    <ul>
+      <li>افتح التطبيق، أدخل <b>اسم متجرك/كشكك</b> واضغط «ابدأ».</li>
+      <li>(اختياري) فعّل <b>رمز PIN</b> من الإعدادات لحماية الدخول — وتحصل معه على 8 رموز استرجاع تحفظها لتستعيد الدخول بنفسك.</li>
+    </ul>
+
+    <h2><span class="n">2.</span> إضافة منتج</h2>
+    <ul>
+      <li>من الرئيسية → «➕ إضافة منتج».</li>
+      <li>أدخل الاسم والباركود وسعري الشراء/البيع والمخزون وتاريخ الصلاحية وحدّ الطلب.</li>
+      <li>للباركود: اكتبه، أو اضغط «📷 مسح» والتقطه بالكاميرا.</li>
+    </ul>
+
+    <h2><span class="n">3.</span> البيع اليومي</h2>
+    <ul>
+      <li>من شريط الأسفل اختر «المبيعات».</li>
+      <li>أضف المنتج للسلة بالبحث عن اسمه أو باركوده، أو بمسحه بالكاميرا.</li>
+      <li>عدّل الكمية بزري <b>[+] [−]</b> بجانب كل منتج في السلة.</li>
+      <li>اضغط <b>«💳 إتمام»</b> → تُسجَّل البيعة ويُخصم من المخزون.</li>
+      <li>في نهاية اليوم اضغط <b>«📅 إغلاق اليوم»</b> ليُحفظ في سجل الأيام.</li>
+    </ul>
+
+    <h2><span class="n">4.</span> الحماية والنسخ الاحتياطي</h2>
+    <ul>
+      <li><b>رمز PIN:</b> من الإعدادات. بعد 5 محاولات خاطئة يُقفل الإدخال 60 ثانية. إن نسيت الرمز استخدم رموز الاسترجاع من شاشة الدخول.</li>
+      <li><b>نسخ احتياطي:</b> من الإعدادات → تصدير نسخة مشفّرة بكلمة مرور، واحفظها في مكان آمن. لاستعادتها لاحقاً: استيراد.</li>
+    </ul>
+
+    <h2><span class="n">5.</span> الميزات المدفوعة</h2>
+    <p>التقارير والرسوم البيانية، وتنبؤات الذكاء الاصطناعي، وإدارة ديون العملاء تُفتح عبر رمز تفعيل — <b>تواصل مع المطوّر</b> على واتساب للحصول عليه بعد التفعيل.</p>
+
+    <p class="note">💡 بيانات كشكك محفوظة على جهازك فقط ولا تُرسل لأي جهة. انصح بنسخ احتياطية دورية.</p>
+  </div>
+  <div class="rule"></div>
+  <footer class="pad">
+    <div class="thanks">*** <em>بيع موفق</em> ***</div>
+  </footer>
+  <div class="torn"></div>
+</div>
+</body>
+</html>

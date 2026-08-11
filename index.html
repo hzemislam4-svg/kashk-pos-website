@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>كشك POS Pro — حمّل التطبيق للأندرويد والآيفون</title>
+<meta name="description" content="كشك POS Pro — نظام نقطة بيع لكشكك ومحلك الصغير، يعمل كاملاً بدون إنترنت. حمّل APK للأندرويد مباشرة، وللآيفون راسل المطوّر لتركيبه لك.">
+<meta property="og:title" content="كشك POS Pro — نزّل التطبيق">
+<meta property="og:description" content="نقطة بيع لكشكك: بيع سريع، مخزون، تقارير، نسخ احتياطي مشفر، وقفل PIN. يعمل بدون إنترنت.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='8' width='52' height='48' rx='4' fill='%23f6f2e7'/%3E%3Crect x='6' y='8' width='52' height='10' rx='4' fill='%23c22a22'/%3E%3Crect x='12' y='26' width='40' height='4' fill='%23222222'/%3E%3Crect x='12' y='36' width='28' height='4' fill='%23222222'/%3E%3Crect x='12' y='46' width='36' height='4' fill='%23222222'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f2e7;
+  --paper-2:#efeadd;
+  --ink:#1c1a16;
+  --ink-2:#4c463c;
+  --red:#c22a22;
+  --red-deep:#9e1f18;
+  --glow:#f2c14e;
+  --bg:#171310;
+  --bg-2:#221b14;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cairo',Tahoma,'Segoe UI',sans-serif;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(242,193,78,.14), transparent 60%),
+    radial-gradient(900px 500px at 5% 15%, rgba(242,193,78,.08), transparent 55%),
+    linear-gradient(160deg,var(--bg) 0%, var(--bg-2) 60%, #120e0b 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  min-height:100vh;
+  padding: clamp(16px,4vw,48px) 16px 60px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'IBM Plex Mono',Consolas,monospace}
+
+/* ============ THE TAPE ============ */
+.tape{
+  position:relative;
+  width:min(520px,100%);
+  background:
+    repeating-linear-gradient(0deg, rgba(28,26,22,.014) 0 1px, transparent 1px 3px),
+    linear-gradient(var(--paper),var(--paper));
+  border-radius:6px 6px 0 0;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.5) inset,
+    0 24px 60px -18px rgba(0,0,0,.7),
+    0 6px 22px rgba(0,0,0,.45);
+  color:var(--ink);
+}
+/* perforation teeth along the sides */
+.tape::before,.tape::after{
+  content:'';
+  position:absolute;top:0;bottom:0;width:9px;
+  background:
+    repeating-linear-gradient(to bottom, rgba(28,26,22,.28) 0 2px, transparent 2px 6px);
+  opacity:.5;
+  pointer-events:none;
+}
+.tape::before{left:-3px}
+.tape::after{right:-3px}
+
+/* ============ SHARED ============ */
+.pad{padding:22px 26px 6px}
+.rule{height:14px;position:relative;overflow:hidden}
+.rule::after{content:'';position:absolute;left:0;right:0;top:50%;height:0;border-top:2px dashed rgba(28,26,22,.35)}
+.pp{opacity:0;transform:translateY(6px);transition:opacity .5s ease-out, transform .5s ease-out}
+.pp.in{opacity:1;transform:none}
+.reveal{transition-delay:var(--d,0s)}
+.row{display:flex;align-items:baseline;gap:8px}
+.row .txt{flex:1}
+.leaders{flex:1;border-bottom:2px dotted rgba(28,26,22,.4);margin:0 6px;transform:translateY(-4px)}
+a{color:inherit}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;font-weight:800;font-size:15px;
+  padding:12px 18px;border-radius:3px;border:0;cursor:pointer;
+  text-decoration:none;letter-spacing:.2px;line-height:1;
+  position:relative;transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.btn-red{background:var(--red);color:#fff7ee;box-shadow:0 2px 0 var(--red-deep)}
+.btn-red:hover{background:var(--red-deep);transform:translateY(-1px)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:#000;transform:translateY(-1px)}
+
+/* ============ HEADER ============ */
+.rcpt-head{text-align:center;padding:26px 22px 8px}
+.cut-top{height:12px;margin:0 -2px;background:linear-gradient(120deg, transparent 40%, rgba(0,0,0,.06) 60%, transparent 80%)}
+.app-name{
+  font-size:clamp(30px,9vw,40px);font-weight:900;line-height:1.15;
+  letter-spacing:-.01em;
+}
+.app-name .pro{color:var(--red)}
+.tagline{font-size:15px;color:var(--ink-2);font-weight:600;margin-top:6px}
+.ticket{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2);font-weight:600;margin-top:16px;border-top:2px dashed rgba(28,26,22,.35);padding-top:10px}
+
+/* ============ ITEMS (download boxes) ============ */
+.item{
+  background:var(--paper-2);
+  border:2px dashed rgba(28,26,22,.35);
+  border-radius:4px;
+  padding:16px 18px 18px;
+  margin-top:14px;
+  position:relative;
+}
+.item::before{ /* perforation ticket punch */
+  content:'';position:absolute;top:-8px;right:22px;width:12px;height:12px;
+  border-radius:50%;background:var(--paper);
+}
+.item-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.os{display:flex;align-items:center;gap:9px;font-weight:900;font-size:19px}
+.os .dot{width:11px;height:11px;border-radius:50%;background:var(--ink);flex:none}
+.os.android .dot{background:#2e7d32}
+.os.ios .dot{background:#5f6368}
+.price{font-weight:900;font-size:19px;color:var(--red);white-space:nowrap}
+.price small{font-size:11px;color:var(--ink-2);font-weight:700;display:block;text-align:left}
+.item-desc{font-size:13.5px;color:var(--ink-2);font-weight:600;line-height:1.75;margin-top:8px}
+.item-desc b{color:var(--ink)}
+.item-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.item-actions .btn{flex:1;min-width:150px}
+.note{font-size:11.5px;color:var(--ink-2);font-weight:600;margin-top:10px;display:flex;gap:6px;align-items:flex-start;line-height:1.6}
+.note::before{content:'※';color:var(--red);font-weight:900}
+
+/* ============ FEATURES ============ */
+.sec-title{display:flex;align-items:center;gap:10px;font-weight:900;font-size:16px;color:var(--ink);margin-bottom:8px}
+.sec-title .lbl{flex:none}
+.sec-title::after{content:'';flex:1;border-top:2px dashed rgba(28,26,22,.4);margin-top:4px}
+.feat{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;font-weight:600;line-height:1.6;padding:5px 0}
+.feat .mk{color:var(--red);font-weight:900;flex:none;line-height:1.5}
+.feat .f-txt{flex:1}
+.feat .f-txt b{font-weight:800}
+.feat .inc{font-family:'IBM Plex Mono',Consolas,monospace;font-size:11.5px;color:var(--ink-2);white-space:nowrap;margin-top:4px}
+.feat .inc span{color:var(--red);font-weight:700}
+.pro-note{
+  margin-top:10px;font-size:12.5px;color:var(--ink-2);font-weight:600;line-height:1.7;
+  background:rgba(28,26,22,.05);border-radius:4px;padding:10px 12px;
+}
+.pro-note b{color:var(--ink)}
+
+/* ============ TOTALS ============ */
+.totals{padding:6px 26px 18px}
+.total-line{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--ink-2);padding:3px 0}
+.total-line .mono{color:var(--ink);font-weight:600}
+.grand{
+  text-align:center;margin-top:16px;padding:14px;border:2px dashed rgba(28,26,22,.4);border-radius:4px;
+}
+.grand .big{font-family:'IBM Plex Mono',Consolas,monospace;font-size:40px;font-weight:700;color:var(--red);line-height:1}
+.grand .g-lbl{font-size:13px;font-weight:800;color:var(--ink);margin-top:6px}
+.grand .g-sub{font-size:11.5px;color:var(--ink-2);font-weight:600;margin-top:4px}
+
+/* ============ PRIVACY ============ */
+.privacy{padding:4px 26px 6px}
+.trust-line{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;font-weight:700;line-height:1.7;padding:6px 0;color:var(--ink)}
+.trust-line .mk{color:var(--red);flex:none}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.link-chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;
+  border:1.5px solid rgba(28,26,22,.45);border-radius:99px;padding:7px 13px;text-decoration:none;
+  transition:background .15s ease, color .15s ease;
+}
+.link-chip:hover{background:var(--ink);color:var(--paper)}
+.link-chip:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+
+/* ============ FOOTER ============ */
+.rcpt-foot{text-align:center;padding:6px 26px 0}
+.foot-line{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-2);font-weight:700;padding:4px 0}
+.foot-line a{color:var(--ink);text-decoration:none;border-bottom:1.5px dashed rgba(28,26,22,.5)}
+.foot-line a:hover{color:var(--red)}
+.barcode{
+  margin:18px auto 4px;height:44px;width:min(300px,80%);
+  background:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 9px, var(--ink) 9px 13px, transparent 13px 16px, var(--ink) 16px 17px, transparent 17px 20px);
+  -webkit-mask:linear-gradient(90deg, transparent 0, #000 8% 92%, transparent 100%);
+          mask:linear-gradient(90deg, transparent 0, #000 8% 92%, transparent 100%);
+  opacity:.85;
+}
+.barcode-cap{font-family:'IBM Plex Mono',Consolas,monospace;font-size:10px;letter-spacing:2px;color:var(--ink-2)}
+.thanks{font-weight:900;font-size:15px;margin-top:14px;letter-spacing:.5px}
+.thanks em{color:var(--red);font-style:normal}
+.torn{
+  margin-top:20px;height:14px;
+  background:var(--paper);
+  clip-path:polygon(0 0,3% 60%,7% 15%,12% 75%,18% 30%,25% 80%,31% 20%,38% 70%,45% 10%,52% 65%,58% 25%,64% 85%,70% 35%,76% 70%,83% 15%,90% 60%,96% 30%,100% 55%,100% 100%,0 100%);
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.25));
+}
+.tape-foot{margin-top:6px;padding-bottom:2px}
+
+/* print-head marker on section titles */
+.sec-title{position:relative}
+.sec-title .hd{display:inline-block}
+.sec-title .hd::after{
+  content:'';display:block;height:2px;width:0;background:var(--red);margin-top:2px;
+  transition:width .8s cubic-bezier(.2,.7,.2,1) .1s;
+}
+.sec-title.in .hd::after{width:100%}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:420px){
+  .item-actions .btn{min-width:100%}
+  .pad{padding:20px 18px 6px}
+  .privacy,.totals{padding-left:18px;padding-right:18px}
+  .rcpt-foot{padding-left:18px;padding-right:18px}
+}
+
+/* ============ MOTION ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .pp{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+}
+
+@media (prefers-color-scheme: dark){
+  /* keep receipt paper warm-light on purpose: it's the printed object under the shop light */
+  body{background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(242,193,78,.16), transparent 60%),
+    radial-gradient(900px 500px at 5% 15%, rgba(242,193,78,.09), transparent 55%),
+    linear-gradient(160deg,#191410 0%, #221a12 60%, #110d0a 100%);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="tape" id="receipt">
+
+  <header class="rcpt-head">
+    <div class="cut-top pp in"></div>
+    <h1 class="app-name pp in">كشك <span class="pro">POS Pro</span></h1>
+    <p class="tagline pp in">نقطة بيع كشكك الصغير — تعمل كاملاً <b>بدون إنترنت</b></p>
+    <div class="ticket pp in">
+      <span>فاتورة التحميل</span>
+      <span class="mono" id="ticketNo">No. 26-0811</span>
+      <span class="mono" id="ticketDate">—</span>
+    </div>
+  </header>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <main class="pad">
+
+    <!-- ===== ANDROID ===== -->
+    <section class="item pp reveal" style="--d:.05s">
+      <div class="item-head">
+        <div class="os android"><span class="dot"></span>أندرويد</div>
+        <div class="price"><small>الكمية: 1</small>مجاناً</div>
+      </div>
+      <p class="item-desc">تطبيق <b>APK</b> تثبّته مباشرة على هاتفك. بعد الضغط على التحميل سيظهر لك سؤال «هل تريد تنزيل هذا الملف؟» — اضغط <b>نعم</b> فيبدأ التحميل فوراً ثم ثبّته من ملف التحميلات.</p>
+      <div class="item-actions">
+        <a class="btn btn-red" id="dlAndroid" href="https://github.com/hzemislam4-svg/kashk-pos-website/releases/latest/download/KashkPOSPro-v2.6.0.apk" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+          نزّل الآن
+        </a>
+      </div>
+      <p class="note">الملف مرفوع على <b>إصدار رسمي</b> — الحجم <b class="mono">4.5 MB</b> — الإصدار <b class="mono">2.6.0</b>.</p>
+    </section>
+
+    <!-- ===== IPHONE ===== -->
+    <section class="item pp reveal" style="--d:.1s">
+      <div class="item-head">
+        <div class="os ios"><span class="dot"></span>آيفون</div>
+        <div class="price"><small>نسخة تجريبية</small>تواصل معي</div>
+      </div>
+      <p class="item-desc">نسخة الآيفون في مرحلة تجريبية، فلا يوجد رابط تحميل عام. <b>راسلني على واتساب</b> وأنا أركّبه لك بنفسك وأشرح لك طريقة الفتح — الأمر لا يأخذ دقائق.</p>
+      <div class="item-actions">
+        <a class="btn btn-ink" id="dlIos" target="_blank" rel="noopener" href="https://wa.me/213559697503?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%9B%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%86%D8%B2%D9%8A%D9%84%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%83%D8%B4%D9%83%20POS%20Pro%20%D8%B9%D9%84%D9%89%20%D8%AC%D9%87%D8%A7%D8%B2%20%D8%A2%D9%8A%D9%81%D9%88%D9%86%20%D9%84%D8%AF%D9%8A%D9%8A">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          راسلني واتساب
+        </a>
+      </div>
+      <p class="note">الرد عادة خلال وقت قصير. إن لم تكن على واتساب، تواصل معي على الرقم <b class="mono">0559697503</b>.</p>
+    </section>
+
+    <div class="rule" style="margin-top:24px" aria-hidden="true"></div>
+
+    <!-- ===== FEATURES ===== -->
+    <h2 class="sec-title pp reveal"><span class="hd">ماذا تشتري؟</span><span class="lbl">باقة مجانية كاملة</span></h2>
+
+    <div class="feat pp reveal"><span class="mk">✓</span><span class="f-txt"><b>بيع سريع:</b> ابحث بالاسم أو الباركود أو امسحه بالكاميرا — وعدّل الكمية مباشرة من السلة.</span></div>
+    <div class="feat pp reveal" style="--d:.03s"><span class="mk">✓</span><span class="f-txt"><b>إدارة منتجات:</b> سعر شراء/بيع، مخزون، تاريخ صلاحية، وحدّ طلب ينبّهك عند النفاد.</span></div>
+    <div class="feat pp reveal" style="--d:.06s"><span class="mk">✓</span><span class="f-txt"><b>خصومات وكوبونات:</b> خصم نسبة أو مبلغ + كوبونات + ضريبة TVA.</span></div>
+    <div class="feat pp reveal" style="--d:.09s"><span class="mk">✓</span><span class="f-txt"><b>كاشيرات وأهداف:</b> اعرف «من باع ماذا» وحدّد هدفك اليومي وتابع تحقيقه.</span></div>
+    <div class="feat pp reveal" style="--d:.12s"><span class="mk">✓</span><span class="f-txt"><b>إغلاق اليوم وسجل الأيام:</b> أرباحك وأرباح كل يوم محفوظة في سجل دائم.</span></div>
+    <div class="feat pp reveal" style="--d:.15s"><span class="mk">✓</span><span class="f-txt"><b>نسخ احتياطي مشفّر:</b> تشفير AES-256 بكلمة مرور تختارها أنت — حتى لو سُرق الملف لا يُقرأ.</span></div>
+    <div class="feat pp reveal" style="--d:.18s"><span class="mk">✓</span><span class="f-txt"><b>قفل PIN مع استرجاع ذاتي:</b> احمِ الدخول برمز، ومع 8 رموز استرجاع تستعيده بنفسك دون المطوّر.</span></div>
+    <div class="feat pp reveal" style="--d:.21s"><span class="mk">✓</span><span class="f-txt"><b>إلغاء بيع محمي:</b> كل عملية إلغاء محمية بالرمز وتعيد الكمية للمخزون وتُسجَّل.</span></div>
+    <div class="feat pp reveal" style="--d:.24s"><span class="mk">✓</span><span class="f-txt"><b>مزامنة دون اتصال:</b> انقطع النت؟ واصِل البيع ويُدمج كل شيء تلقائياً عند عودته.</span></div>
+    <div class="feat pp reveal" style="--d:.27s"><span class="mk">✓</span><span class="f-txt"><b>مشاركة الفاتورة:</b> أرسل أي فاتورة أو تقرير جاهزاً على واتساب بنقرة.</span></div>
+
+    <h2 class="sec-title pp reveal" style="margin-top:18px"><span class="hd">إضافة Pro</span><span class="lbl">تُفتح برمز تفعيل</span></h2>
+    <div class="feat pp reveal"><span class="mk">＋</span><span class="f-txt"><b>تقارير ورسوم بيانية</b> لمبيعاتك</span></div>
+    <div class="feat pp reveal" style="--d:.04s"><span class="mk">＋</span><span class="f-txt"><b>تنبؤات ذكاء اصطناعي</b> للمخزون والطلب</span></div>
+    <div class="feat pp reveal" style="--d:.08s"><span class="mk">＋</span><span class="f-txt"><b>إدارة ديون العملاء</b> وتسجيلها</span></div>
+    <p class="pro-note pp reveal">الترقية اختيارية بالكامل: تطلبها من داخل التطبيق وتدفع خارجياً، ثم يُفعلها لك <b>المطوّر برمز مرتبط بجهازك فقط</b>.</p>
+
+    <div class="rule" style="margin-top:20px" aria-hidden="true"></div>
+
+    <!-- ===== TOTALS ===== -->
+    <div class="totals pp reveal">
+      <div class="total-line"><span>باقة المجانية</span><span class="mono">0 دج</span></div>
+      <div class="total-line"><span>ترقية Pro</span><span class="mono">عند الحاجة</span></div>
+      <div class="total-line"><span>شحن</span><span class="mono">تلقائي</span></div>
+      <div class="grand">
+        <div class="big">مجاناً</div>
+        <div class="g-lbl">سعر البرنامج — والدفع عبر تحميل مباشر</div>
+        <div class="g-sub">برنامج واحد يعمل على كل أجهزتك، وبضمانة المطوّر.</div>
+      </div>
+    </div>
+
+    <div class="rule" aria-hidden="true"></div>
+
+    <!-- ===== PRIVACY ===== -->
+    <section class="privacy pp reveal">
+      <h2 class="sec-title"><span class="hd">ضمان الخصوصية</span></h2>
+      <div class="trust-line"><span class="mk">■</span><span>بيانات كشكك <b>على جهازك فقط</b> — لا خوادم، لا حسابات، لا إعلانات.</span></div>
+      <div class="trust-line"><span class="mk">■</span><span>الكاميرا تُستخدم <b>فقط</b> لمسح الباركود — لا تصوير ولا حفظ للصور.</span></div>
+      <div class="trust-line"><span class="mk">■</span><span>النسخ الاحتياطي مشفّر بكلمة مرور <b>لا يعرفها إلا أنت</b>.</span></div>
+      <div class="links">
+        <a class="link-chip" href="privacy.html">📄 سياسة الخصوصية</a>
+        <a class="link-chip" href="usage.html">📘 دليل الاستخدام</a>
+      </div>
+    </section>
+
+    <div class="rule" aria-hidden="true"></div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="rcpt-foot pp reveal">
+      <div class="foot-line"><span>لأي سؤال أو مساعدة:</span><span><a href="https://wa.me/213559697503" target="_blank" rel="noopener">واتساب المطوّر</a></span></div>
+      <div class="foot-line"><span>رقم الهاتف</span><span class="mono">0559697503</span></div>
+      <div class="barcode" role="img" aria-label="رمز شريطي للتطبيق"></div>
+      <div class="barcode-cap">KASHK-POS-PRO · v2.6.0</div>
+      <p class="thanks">*** <em>شكراً لزيارتك الكشك</em> ***</p>
+    </footer>
+
+  </main>
+  <div class="torn" aria-hidden="true"></div>
+  <div class="tape-foot" aria-hidden="true"></div>
+</div>
+
+<script>
+(function(){
+  var NOW=new Date();
+  function pad(n){return (n<10?'0':'')+n;}
+  document.getElementById('ticketDate').textContent=pad(NOW.getDate())+'/'+pad(NOW.getMonth()+1)+'/'+String(NOW.getFullYear()).slice(2)+' '+pad(NOW.getHours())+':'+pad(NOW.getMinutes());
+  document.getElementById('ticketNo').textContent='No. '+NOW.getFullYear()+'-'+pad(NOW.getMonth()+1)+pad(NOW.getDate());
+
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els=document.querySelectorAll('.pp');
+  if(reduce||!('IntersectionObserver' in window)){
+    els.forEach(function(e){e.classList.add('in');});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+</body>
+</html>
